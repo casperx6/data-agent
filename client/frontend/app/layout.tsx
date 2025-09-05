@@ -6,7 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Metis',
+  title: 'DQA Agent',
   description: 'AI Agent Platform',
 };
 

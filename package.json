@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "lucide-react": "^0.542.0",
     "mcp-remote": "^0.1.17",
+    "mysql2": "^3.14.4",
     "next": "^15.3.5"
   }
 }

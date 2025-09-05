@@ -1,22 +1,39 @@
 {
   "mcpServers": {
-    "notion": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.notion.com/sse"]
-    },
-    "linear": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"]
-    },
-    "hyperbrowser": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "hyperbrowser-mcp"
-      ],
+    "database-tools": {
+      "command": "python",
+      "args": ["/Users/casper6/XieShuyang/ai-project/data-agent/server/src/database_mcp_server.py"],
       "env": {
-        "HYPERBROWSER_API_KEY": "API_KEY_HERE"
+        "PYTHONPATH": "/Users/casper6/XieShuyang/ai-project/data-agent/server"
+      }
+    },
+    "rule-generate-tools": {
+      "command": "python",
+      "args": ["/Users/casper6/XieShuyang/ai-project/data-agent/server/src/rule_generate_mcp_server.py"],
+      "env": {
+        "PYTHONPATH": "/Users/casper6/XieShuyang/ai-project/data-agent/server"
+      }
+    },
+    "rule-execute-tools": {
+      "command": "python",
+      "args": ["/Users/casper6/XieShuyang/ai-project/data-agent/server/src/rule_execute_mcp_server.py"],
+      "env": {
+        "PYTHONPATH": "/Users/casper6/XieShuyang/ai-project/data-agent/server"
+      }
+    },
+    "invali-data-get-tools": {
+      "command": "python",
+      "args": ["/Users/casper6/XieShuyang/ai-project/data-agent/server/src/invalid_data_get_mcp_server.py"],
+      "env": {
+        "PYTHONPATH": "/Users/casper6/XieShuyang/ai-project/data-agent/server"
+      }
+    },
+    "report-generate-tools": {
+      "command": "python",
+      "args": ["/Users/casper6/XieShuyang/ai-project/data-agent/server/src/report_generate_mcp_server.py"],
+      "env": {
+        "PYTHONPATH": "/Users/casper6/XieShuyang/ai-project/data-agent/server"
       }
     }
   }
-} 
+}

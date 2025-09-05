@@ -93,9 +93,9 @@ cd client/backend
 print_status "Installing Python dependencies..."
 # Use pip3 if pip is not available
 if command -v pip3 &> /dev/null; then
-    pip3 install -r requirements.txt
+    pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 else
-    pip install -r requirements.txt
+    pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 fi
 
 print_success "Backend setup complete!"

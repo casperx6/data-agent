@@ -1,5 +1,4 @@
 #!/usr/bin/env ts-node
-
 import OpenAI from 'openai';
 import * as fs from 'fs';
 import * as path from 'path';

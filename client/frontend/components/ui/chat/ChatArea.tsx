@@ -75,23 +75,23 @@ const ChatArea = () => {
           <div className="h-full flex items-center justify-center">
             <div className="text-center max-w-md">
               <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-4 mx-auto">
-                <span className="text-2xl font-bold text-indigo-600">M</span>
+                <span className="text-2xl font-bold text-indigo-600">DQA</span>
               </div>
               <h2 className="text-xl font-semibold text-gray-900 mb-2">
-                Welcome to Metis Playground
+                欢迎使用数据质量评估智能体
               </h2>
               <p className="text-gray-600 mb-6">
-                Your AI assistant ready to help you with various tasks using available tools.
+                随时准备使用可用的工具帮助您完成数据质量评估任务的数据质量评估智能体
               </p>
               <div className="space-y-2">
                 <div className="bg-white rounded-lg p-3 text-sm text-left border border-gray-200">
-                  <span className="font-medium">Try:</span> &quot;What tools are available?&quot;
+                  <span className="font-medium">Try:</span> &quot;你有哪些工具&quot;
                 </div>
                 <div className="bg-white rounded-lg p-3 text-sm text-left border border-gray-200">
-                  <span className="font-medium">Try:</span> &quot;Help me with a task&quot;
+                  <span className="font-medium">Try:</span> &quot;你能做什么&quot;
                 </div>
                 <div className="bg-white rounded-lg p-3 text-sm text-left border border-gray-200">
-                  <span className="font-medium">Try:</span> &quot;Show me what you can do&quot;
+                  <span className="font-medium">Try:</span> &quot;数据质量评估流程是什么&quot;
                 </div>
               </div>
             </div>

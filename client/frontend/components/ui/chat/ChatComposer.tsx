@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import {
-  Paperclip,
-  ChevronRight,
+ Paperclip,
+ ChevronRight,
 } from "lucide-react";
 import { useChatStore } from "@/lib/stores/chatStore";
 import apiService from "@/lib/services/api";
@@ -34,12 +34,36 @@ const ChatComposer = () => {
 
   const isSessionActive = !!sessionId;
 
+  // 调整文本框高度的函数
+ const adjustTextareaHeight = useCallback(() => {
+  const textarea = textareaRef.current;
+  if (!textarea) return;
+
+  // 重置高度以获取正确的scrollHeight
+  textarea.style.height = 'auto';
+   
+  // 计算新高度
+  const minHeight = 60;  // 对应 min-h-[60px]
+  const maxHeight = 200; // 对应 max-h-[200px]
+  const scrollHeight = textarea.scrollHeight;
+  const newHeight = Math.min(Math.max(scrollHeight, minHeight), maxHeight);
+   
+  // 应用新高度
+  textarea.style.height = `${newHeight}px`;
+   
+  // 调试信息（可选，生产环境可删除）
+  console.log('Textarea height adjusted:', { scrollHeight, newHeight }); 
+}, []);
+
+  // 监听输入变化，自动调整高度
   useEffect(() => {
-    if (textareaRef.current) {
-      textareaRef.current.style.height = "auto";
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
-    }
-  }, [input]);
+  adjustTextareaHeight(); 
+}, [input, adjustTextareaHeight]);
+
+ // 组件挂载后初始化高度
+  useEffect(() => {
+  adjustTextareaHeight();
+}, [adjustTextareaHeight]);
 
   // Check backend connection on mount
   useEffect(() => {
@@ -59,20 +83,29 @@ const ChatComposer = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+   setInput(e.target.value);
+   // 立即调整高度，而不仅仅依赖useEffect
+   setTimeout(adjustTextareaHeight, 0);
+ };
+
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim() || isConnecting || isTyping) return;
+   e.preventDefault();
+   if (!input.trim() || isConnecting || isTyping) return;
 
-    const userInput = input;
-    setInput("");
+   const userInput = input;
+   setInput("");
 
-    // Send message using the simplified system
-    const success = await sendMessage(userInput);
-    
-    if (!success) {
-      console.error("Failed to send message");
-    }
-  };
+   // 清空输入后立即调整高度
+   setTimeout(adjustTextareaHeight, 0);
+
+   // Send message using the simplified system
+   const success = await sendMessage(userInput);
+   
+   if (!success) {
+     console.error("Failed to send message");
+   }
+ };
 
   const handleToolClick = (toolName: string) => {
     setInput(`/${toolName} `);
@@ -100,7 +133,7 @@ const ChatComposer = () => {
               <Textarea
                 ref={textareaRef}
                 value={input}
-                onChange={(e) => setInput(e.target.value)}
+                onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
                 placeholder={
                   isSessionActive 
@@ -108,6 +141,10 @@ const ChatComposer = () => {
                     : "Start a conversation..."
                 }
                 className="min-h-[60px] max-h-[200px] resize-none pr-12 text-sm"
+                style={{
+                  height: 'auto',
+                  transition: 'height 0.1s ease' // 添加平滑过渡效果
+               }}
                 disabled={isConnecting || isTyping}
               />
               

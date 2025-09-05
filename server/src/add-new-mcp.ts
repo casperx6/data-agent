@@ -20,11 +20,12 @@ declare global {
 }
 
 const CONFIG_PATH = process.env.MCP_CONFIG_PATH || path.resolve('./config.json');
-const MAX_ACTIVE_SERVERS = (() => {
-  const envValue = process.env.MAX_ACTIVE_SERVERS;
-  const parsed = parseInt(envValue || '3', 10);
-  return isNaN(parsed) ? 3 : parsed;
-})();
+// const MAX_ACTIVE_SERVERS = (() => {
+//   const envValue = process.env.MAX_ACTIVE_SERVERS;
+//   const parsed = parseInt(envValue || '3', 10);
+//   return isNaN(parsed) ? 3 : parsed;
+// })();
+const MAX_ACTIVE_SERVERS = 3;
 
 // Helper to read the entire config, ensuring active_mcp_queue exists
 function _readFullConfig(): any {

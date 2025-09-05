@@ -3,5 +3,7 @@
 import MetisChat from '@/components/ui/chat/MetisChat'
 
 export default function Home() {
-  return <MetisChat />;
+  return (
+      <MetisChat />
+  );
 }
